@@ -2,11 +2,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import SectionHeader from "../components/SectionHeader";
 import { useRef } from "react";
 import project7 from "../assets/project7.png";
-import project2 from "../assets/project2.png";
+// import project2 from "../assets/project2.png";
 import project3 from "../assets/project3.png";
 import project4 from "../assets/project4.png";
 import project5 from "../assets/project5.png";
-import project6 from "../assets/project6.png";
+// import project6 from "../assets/project6.png";
 import project8 from "../assets/project8.png";
 import project9 from "../assets/project9.png";
 import project10 from "../assets/project10.png";
@@ -14,70 +14,63 @@ import project10 from "../assets/project10.png";
 const projects = [
   {
     title: "Law Firm Website",
-    stack: "React • Tailwind • Sanity",
     desc: "A high-converting website designed for legal professionals, featuring a dynamic blog for daily news updates, and focused on trust, clarity, and lead generation.",
     img: project5,
-    link: "#",
+    link: "https://www.seasidepartners.org/",
     featured: true,
   },
   {
     title: "Booking & Dance Class Website",
-    stack: "Next.js • Tailwind • Node.js",
     desc: "An interactive platform for dance classes with class scheduling, booking functionality, and responsive design for seamless access with secure payment integration system using stripe.",
     img: project9,
-    link: "#",
+    link: "https://dxbstarsetm.com/",
   },
   {
     title: "Prediction Website with Database",
-    stack: "React • Tailwind • Supabase",
     desc: "A prediction platform where admins publish games and users view them on the frontend, featuring recent match history and a newsletter system for daily updates.",
     img: project10,
-    link: "#",
+    link: "https://www.kickpredict.xyz/",
   },
   {
     title: "Construction Website",
-    stack: "Next.js • CSS • JS • Tailwind",
     desc: "A sleek and modern construction website designed to convert visitors into clients.",
     img: project4,
-    link: "#",
+    link: "https://apexconstruct.org/",
   },
   {
     title: "Baking Website",
-    stack: "React • Tailwind • Node.js",
     desc: "A visually appealing website for a baking business featuring product showcases, custom orders, and a smooth user experience.",
     img: project8,
-    link: "#",
+    link: "https://everythingbybaliquity.vercel.app/",
     featured: true,
   },
   {
     title: "Portfolio Website",
-    stack: "React • Tailwind",
     desc: "A personal portfolio built with performance and design in mind.",
     img: project7,
     link: "#",
   },
+  // {
+  //   title: "Real Estate Platform",
+  //   stack: "Next.js • Firebase • Tailwind",
+  //   desc: "A modern platform for property listings with filtering, clean UI, and mobile-first experience.",
+  //   img: project2,
+  //   link: "#",
+  // },
   {
-    title: "Real Estate Platform",
-    stack: "Next.js • Firebase • Tailwind",
-    desc: "A modern platform for property listings with filtering, clean UI, and mobile-first experience.",
-    img: project2,
-    link: "#",
-  },
-  {
-    title: "SaaS Dashboard",
-    stack: "React • API • Charts",
-    desc: "A clean analytics dashboard with data visualization and intuitive user flows.",
+    title: "SaaS Application",
+    desc: "A modern SaaS platform built for creators and businesses, featuring powerful online tools for image optimization, PDF utilities, file management, and productivity workflows.",
     img: project3,
-    link: "#",
+    link: "https://focusstudio.vercel.app/",
   },
 
-  {
-    title: "E-commerce Store",
-    stack: "Next.js • Stripe • MongoDB",
-    desc: "A scalable e-commerce store with payment integration and modern UI.",
-    img: project6,
-    link: "#",
-  },
+  // {
+  //   title: "E-commerce Store",
+  //   stack: "Next.js • Stripe • MongoDB",
+  //   desc: "A scalable e-commerce store with payment integration and modern UI.",
+  //   img: project6,
+  //   link: "#",
+  // },
 ];
 
 export default function Portfolio() {
@@ -120,7 +113,7 @@ export default function Portfolio() {
               {/* LEFT */}
               <div className="portfolio-left">
                 <h3>{project.title}</h3>
-                <p className="stack">{project.stack}</p>
+                {/* <p className="stack">{project.stack}</p> */}
                 <p className="desc">{project.desc}</p>
 
                 <a href={project.link} className="view-btn">

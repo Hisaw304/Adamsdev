@@ -7,7 +7,14 @@
   --ad-text-muted: #94a3b8;
   --ad-border: rgba(241, 245, 249, 0.2);
 }
-
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+* {
+  box-sizing: border-box;
+}
 /* Body */
 body {
   background-color: var(--ad-body);
