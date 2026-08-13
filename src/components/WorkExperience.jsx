@@ -22,7 +22,7 @@ export default function Experience() {
     {
       role: "Freelance Developer",
       company: "Fiverr",
-      duration: "2023 — Present",
+      duration: "2022 — Present",
       location: "Remote",
       points: [
         "Built custom websites and web apps for global clients",
@@ -45,19 +45,19 @@ export default function Experience() {
       ],
       tools: "Next.js, Vue, Supabase, Cloudinary, Bootstrap",
     },
-    {
-      role: "Freelance Developer",
-      company: "Fiverr",
-      duration: "2023 — Present",
-      location: "Remote",
-      points: [
-        "Built custom websites and web apps for global clients",
-        "Delivered scalable and high-performance solutions",
-        "Worked across SaaS, law, real estate, and e-commerce",
-        "Handled full project lifecycle from design to deployment",
-      ],
-      tools: "React, Laravel, Tailwind, MongoDB, Firebase",
-    },
+    // {
+    //   role: "Freelance Developer",
+    //   company: "Fiverr",
+    //   duration: "2023 — Present",
+    //   location: "Remote",
+    //   points: [
+    //     "Built custom websites and web apps for global clients",
+    //     "Delivered scalable and high-performance solutions",
+    //     "Worked across SaaS, law, real estate, and e-commerce",
+    //     "Handled full project lifecycle from design to deployment",
+    //   ],
+    //   tools: "React, Laravel, Tailwind, MongoDB, Firebase",
+    // },
   ];
 
   return (

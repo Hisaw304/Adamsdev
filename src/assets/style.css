@@ -1130,7 +1130,7 @@ body {
 }
 
 .kp-faq-question:hover {
-  color: var(--ad-buttons);
+  /* color: var(--ad-buttons); */
 }
 
 /* ========================= */

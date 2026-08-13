@@ -81,16 +81,16 @@ export default function FaQuestions() {
 
               <div className="faq-support-actions">
                 <a
-                  href="https://wa.me/your-number"
+                  href="https://wa.me/2347041624830"
                   target="_blank"
                   className="faq-btn primary"
                 >
                   WhatsApp Me
                 </a>
 
-                <a href="#contact" className="faq-btn secondary">
+                {/* <a href="#contact" className="faq-btn secondary">
                   Contact Form
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
