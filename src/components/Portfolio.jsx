@@ -60,7 +60,7 @@ const projects = [
     title: "SaaS Application",
     desc: "A modern SaaS platform built for creators and businesses, featuring powerful online tools for image optimization, PDF utilities, file management, and productivity workflows.",
     img: project3,
-    link: "https://focusstudio.vercel.app/",
+    link: "https://freshmindstudio.vercel.app/",
   },
 ];
 
