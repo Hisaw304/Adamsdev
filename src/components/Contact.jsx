@@ -116,7 +116,7 @@ export default function Contact() {
                   href="mailto:joeloladipupo@gmail.com"
                   className="contact-info-value"
                 >
-                  Blackadmas@gmail.com
+                  adamstunjisodiq@gmail.com
                 </a>
               </div>
             </div>
@@ -141,12 +141,12 @@ export default function Contact() {
               <div>
                 <p className="contact-info-label">X (Twitter)</p>
                 <a href="#" className="contact-info-value">
-                  @AdamsGunners
+                  @adamstj_
                 </a>
               </div>
             </div>
 
-            <div className="contact-info-item">
+            {/* <div className="contact-info-item">
               <FiInstagram className="contact-info-icon" />
               <div>
                 <p className="contact-info-label">Instagram</p>
@@ -154,7 +154,7 @@ export default function Contact() {
                   @BlackAdams
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

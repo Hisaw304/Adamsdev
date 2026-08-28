@@ -1,6 +1,8 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "../components/SectionHeader";
-import { useRef } from "react";
+
 import project7 from "../assets/project7.png";
 // import project2 from "../assets/project2.png";
 import project3 from "../assets/project3.png";
@@ -63,17 +65,39 @@ const projects = [
     link: "https://freshmindstudio.vercel.app/",
   },
 ];
-
+gsap.registerPlugin(ScrollTrigger);
 export default function Portfolio() {
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".portfolio-card");
+
+      if (!cards.length) return;
+
+      cards.forEach((card, index) => {
+        gsap.from(card, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+
+          delay: index * 0.05,
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="projects" className="portfolio-section" ref={ref}>
+    <section id="projects" className="portfolio-section" ref={sectionRef}>
       <SectionHeader
         tag="-Portfolio-"
         title="My Past"
@@ -82,42 +106,41 @@ export default function Portfolio() {
       />
 
       <div className="portfolio-stack">
-        {projects.map((project, i) => {
-          return (
-            <motion.div
-              key={i}
-              style={{
-                "--i": i,
-                zIndex: i,
-              }}
-              className={`portfolio-card ${project.featured ? "featured" : ""}`}
-            >
-              <div className="portfolio-left">
-                <h3>{project.title}</h3>
+        {projects.map((project, i) => (
+          <div
+            key={i}
+            className={`portfolio-card ${project.featured ? "featured" : ""}`}
+            style={{
+              "--i": i,
+            }}
+          >
+            {/* LEFT */}
+            <div className="portfolio-left">
+              <h3>{project.title}</h3>
 
-                <p className="desc">{project.desc}</p>
-
-                <a
-                  href={project.link}
-                  className="view-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Project →
-                </a>
-              </div>
+              <p className="desc">{project.desc}</p>
 
               <a
                 href={project.link}
-                className="portfolio-image"
+                className="view-btn"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={project.img} alt={project.title} />
+                View Project →
               </a>
-            </motion.div>
-          );
-        })}
+            </div>
+
+            {/* RIGHT */}
+            <a
+              href={project.link}
+              className="portfolio-image"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={project.img} alt={project.title} />
+            </a>
+          </div>
+        ))}
       </div>
     </section>
   );

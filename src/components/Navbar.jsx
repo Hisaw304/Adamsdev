@@ -1,96 +1,111 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Home,
+  FolderKanban,
+  BriefcaseBusiness,
+  Mail,
+  MessageSquareQuote,
+  Sun,
+  Moon,
+} from "lucide-react";
 
-const navLinks = ["Home", "Projects", "Services", "Contact", "Testimonial"];
+const navLinks = [
+  {
+    name: "Home",
+    icon: Home,
+  },
+  {
+    name: "Projects",
+    icon: FolderKanban,
+  },
+  {
+    name: "Services",
+    icon: BriefcaseBusiness,
+  },
+  {
+    name: "Contact",
+    icon: Mail,
+  },
+  {
+    name: "Testimonial",
+    icon: MessageSquareQuote,
+  },
+];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [lightMode, setLightMode] = useState(() => {
+    return localStorage.getItem("adams-theme") === "light";
+  });
+
   const handleScroll = (section) => {
     const el = document.getElementById(section.toLowerCase());
+
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView({
+        behavior: "smooth",
+      });
     }
   };
+
+  const toggleTheme = () => {
+    setLightMode((prev) => {
+      const next = !prev;
+
+      document.body.classList.toggle("light-mode", next);
+      localStorage.setItem("adams-theme", next ? "light" : "dark");
+
+      return next;
+    });
+  };
+  useEffect(() => {
+    document.body.classList.toggle("light-mode", lightMode);
+  }, []);
   return (
-    <>
-      {/* Navbar */}
-      <nav className="w-full top-0 left-0 z-1000 bg-transparent">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Name */}
-          <div
-            className="flex flex-col leading-tight cursor-pointer"
-            onClick={() => handleScroll("Home")}
-          >
-            <h1 className="text-xl font-bold text-[var(--ad-text)] tracking-wider">
-              ADAMS
-            </h1>
-            <span className="text-sm text-[var(--ad-text-muted)]">
-              Full Stack Developer
-            </span>
-          </div>
-
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-8 text-[var(--ad-text)]">
-            {navLinks.map((link) => (
-              <li
-                key={link}
-                className="nav-link cursor-pointer"
-                onClick={() => handleScroll(link)}
-              >
-                {link}
-              </li>
-            ))}
-          </ul>
-
-          {/* Hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-[var(--ad-text)]"
-          >
-            <div className={`hamburger ${open ? "open" : ""}`}>
-              <span></span>
-              <span></span>
-            </div>
-          </button>
+    <nav className="navbar">
+      <div className="navbar-inner">
+        {/* NAME - LARGE SCREEN ONLY */}
+        <div className="navbar-brand" onClick={() => handleScroll("Home")}>
+          <h1>ADAMS</h1>
+          <span>Full Stack Developer</span>
         </div>
 
-        {/* Availability badge */}
-        <div className="flex justify-center mt-2">
+        {/* NAVIGATION */}
+        <ul className="navbar-links">
+          {navLinks.map(({ name, icon: Icon }) => (
+            <li
+              key={name}
+              className="navbar-link"
+              onClick={() => handleScroll(name)}
+            >
+              <Icon className="navbar-icon" />
+
+              <span>{name}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* RIGHT SIDE */}
+        <div className="navbar-actions">
+          {/* Availability */}
           <div className="availability-badge">
             <span className="dot"></span>
-            Available for work
+            <span>Available for work</span>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`mobile-wrapper ${open ? "show" : ""}`}
-        onClick={() => setOpen(false)}
-      >
-        <div
-          className="mobile-card-advanced"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {navLinks.map((link, index) => (
-            <div key={link}>
-              <div
-                className="mobile-link-advanced"
-                onClick={() => {
-                  handleScroll(link);
-                  setOpen(false);
-                }}
-              >
-                {link}
-              </div>
-
-              {index !== navLinks.length - 1 && (
-                <div className="mobile-divider" />
-              )}
-            </div>
-          ))}
+          {/* Theme Toggle */}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle light mode"
+          >
+            {lightMode ? (
+              <Moon className="theme-icon" />
+            ) : (
+              <Sun className="theme-icon" />
+            )}
+          </button>
         </div>
       </div>
-    </>
+    </nav>
   );
 }

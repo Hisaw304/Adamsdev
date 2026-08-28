@@ -1,31 +1,79 @@
-import { motion } from "framer-motion";
-// import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.4,
-  });
+  const heroRef = useRef(null);
 
   const stats = [
     { value: 35, label: "Projects Completed" },
     { value: 4, label: "Years Experience" },
     { value: 30, label: "Happy Clients" },
   ];
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // =========================
+      // HERO INTRO
+      // =========================
+
+      const heroTimeline = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      heroTimeline
+        .from(".hero-left", {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+        })
+        .from(
+          ".hero-right",
+          {
+            opacity: 0,
+            x: 60,
+            scale: 0.8,
+            duration: 0.8,
+          },
+          "-=0.45"
+        );
+
+      // =========================
+      // STATS
+      // =========================
+
+      gsap.from(".stat-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.7,
+        stagger: 0.2,
+        ease: "power3.out",
+
+        scrollTrigger: {
+          trigger: ".hero-stats",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="hero-section">
+    <section className="hero-section" ref={heroRef}>
       <div className="hero-container">
         <div className="hero-grid">
           {/* LEFT CONTENT */}
-          <motion.div
-            className="hero-left"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="hero-left">
             {/* Heading Card */}
             <div className="hero-heading-card">
+              <p className="hero-greeting">Hello, I’m Adams.</p>
+
               <h1>
                 I Build High-Converting <br />
                 Websites That Grow <br />
@@ -52,15 +100,10 @@ export default function Hero() {
                 Contact Me
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT IMAGE */}
-          <motion.div
-            className="hero-right"
-            initial={{ opacity: 0, scale: 0.8, x: 60 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-          >
+          <div className="hero-right">
             <div className="home__img">
               <svg
                 className="home__blob"
@@ -78,26 +121,16 @@ export default function Hero() {
                 </g>
               </svg>
             </div>
-          </motion.div>
+          </div>
         </div>
-        {/* ✅ FULL WIDTH STATS */}
 
-        <div className="hero-stats" ref={ref}>
+        {/* FULL WIDTH STATS */}
+        <div className="hero-stats">
           {stats.map((item, i) => (
-            <motion.div
-              key={i}
-              className="stat-item"
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                delay: i * 0.2,
-                duration: 0.7,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
+            <div className="stat-item" key={i}>
               <h3>{item.value}+</h3>
               <p>{item.label}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
