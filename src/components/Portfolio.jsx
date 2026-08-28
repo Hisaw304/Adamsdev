@@ -142,6 +142,12 @@ export default function Portfolio() {
           </div>
         ))}
       </div>
+
+      <div className="why-cta">
+        <a href="#contact" className="why-btn">
+          Discuss Your Project →
+        </a>
+      </div>
     </section>
   );
 }

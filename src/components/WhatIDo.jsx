@@ -9,23 +9,26 @@ gsap.registerPlugin(ScrollTrigger);
 const services = [
   {
     icon: <Code2 size={28} />,
-    title: "Web Development",
-    desc: "Modern, fast, and scalable web applications built with clean architecture and best practices to ensure performance and reliability.",
+    title: "Custom Web Development",
+    desc: "I build tailored websites and web applications around your actual business requirements — from marketing sites and client portals to complex full-stack platforms. The focus is on clean architecture, reliability, and a codebase that can evolve with the product.",
   },
+
   {
     icon: <LayoutDashboard size={28} />,
-    title: "UI / UX Design",
-    desc: "Clean and intuitive interfaces designed to enhance user experience, improve engagement, and drive meaningful interactions.",
+    title: "Product UI & UX",
+    desc: "I turn ideas, rough concepts, and existing designs into clear, responsive interfaces that are easy to use and built around real user journeys. Every screen is designed to balance usability, visual hierarchy, accessibility, and the goals of the business.",
   },
+
   {
     icon: <Rocket size={28} />,
-    title: "Performance Optimization",
-    desc: "Optimizing websites for speed, SEO, and responsiveness to ensure fast load times and better user retention.",
+    title: "Performance & Technical Optimization",
+    desc: "I identify and resolve the issues that slow products down — from inefficient rendering and heavy assets to poor API usage and database queries. The result is a faster, more responsive experience with a stronger technical foundation for SEO and growth.",
   },
+
   {
     icon: <Wrench size={28} />,
-    title: "Ongoing Support",
-    desc: "Ongoing support for your web app, including regular updates, bug fixes, performance optimization, and ongoing improvements. Ensuring your app remains secure, scalable, and up-to-date with the latest features.",
+    title: "Maintenance & Product Improvement",
+    desc: "I stay involved after launch to keep applications reliable and up to date. That includes debugging, security updates, performance improvements, new features, refactoring, and technical improvements as your business and requirements evolve.",
   },
 ];
 

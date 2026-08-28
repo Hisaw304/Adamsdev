@@ -16,28 +16,32 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     icon: <FaChartLine />,
-    title: "Results That Matter",
-    text: "I build websites focused on conversion and real business growth — not just design.",
+    title: "Business-Focused Development",
+    text: "I don't build websites just to look good. I focus on understanding the business behind the project and building experiences that support real goals — from generating leads to improving customer journeys.",
   },
-  {
-    icon: <FaBolt />,
-    title: "Fast & Reliable",
-    text: "Quick delivery, clear communication, and no disappearing mid-project.",
-  },
+
   {
     icon: <FaLayerGroup />,
-    title: "End-to-End Execution",
-    text: "From idea to launch, I handle everything so you don’t have to manage multiple people.",
+    title: "Full-Stack Ownership",
+    text: "From frontend interfaces to backend logic, databases, APIs, authentication, and deployment, I can handle the technical side of the project without you having to coordinate multiple developers.",
   },
+
+  {
+    icon: <FaBolt />,
+    title: "Problem-Solving Mindset",
+    text: "Technical issues are part of every serious project. I investigate problems, identify the root cause, and build practical solutions instead of relying on temporary fixes.",
+  },
+
   {
     icon: <FaBriefcase />,
-    title: "Real Experience",
-    text: "Worked with SaaS, agencies, real estate, and more — I understand business needs.",
+    title: "Built for Real-World Use",
+    text: "My experience spans business websites, SaaS products, e-commerce platforms, and custom web applications, giving me a practical understanding of different users, workflows, and business requirements.",
   },
+
   {
     icon: <FaRocket />,
-    title: "Built to Scale",
-    text: "Fast, optimized, and scalable builds designed for long-term growth.",
+    title: "Performance & Scalability",
+    text: "I build with long-term performance in mind, focusing on clean architecture, efficient data handling, responsive interfaces, and a foundation that can evolve as your product and users grow.",
   },
 ];
 

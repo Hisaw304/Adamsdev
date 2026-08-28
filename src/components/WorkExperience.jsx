@@ -58,25 +58,28 @@ export default function Experience() {
       duration: "2022 — Present",
       location: "Remote",
       points: [
-        "Built custom websites and web apps for global clients",
-        "Delivered scalable and high-performance solutions",
-        "Worked across SaaS, law, real estate, and e-commerce",
-        "Handled full project lifecycle from design to deployment",
+        "Built custom websites and full-stack web applications for clients across multiple industries",
+        "Translated business requirements into responsive, scalable, and user-focused digital products",
+        "Solved frontend, backend, API, database, payment, and deployment challenges throughout projects",
+        "Managed projects from planning and development through testing, deployment, and post-launch improvements",
       ],
-      tools: "React, Laravel, Tailwind, MongoDB, Firebase",
+      tools:
+        "React, JavaScript, Node.js, Laravel, Tailwind CSS, MongoDB, Firebase, REST APIs, Git, Vercel",
     },
+
     {
       role: "Full Stack Developer",
-      company: "FreshMind web Agency",
+      company: "FreshMind Web Agency",
       duration: "2024 — Present",
       location: "Remote",
       points: [
-        "Developed scalable applications for multiple clients",
-        "Optimized backend architecture and performance",
-        "Maintained and upgraded production systems",
-        "Collaborated on deployments and system design",
+        "Developed and maintained full-stack applications for multiple business clients",
+        "Designed and implemented frontend interfaces, backend services, databases, and third-party integrations",
+        "Diagnosed complex technical issues and improved application performance, reliability, and maintainability",
+        "Worked across development, testing, deployment, and ongoing improvements for production systems",
       ],
-      tools: "Next.js, Vue, Supabase, Cloudinary, Bootstrap",
+      tools:
+        "Next.js, React, Vue.js, Node.js, Laravel, Supabase, MongoDB, Cloudinary, REST APIs, Git, Vercel, Bootstrap",
     },
   ];
 

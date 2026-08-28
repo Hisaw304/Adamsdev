@@ -60,23 +60,23 @@ export default function TechStack() {
             <div className="tech-divider" />
 
             <p>
-              I begin every project with a clear understanding of requirements,
-              ensuring that business goals align with technical execution. From
-              planning to deployment, I follow a structured workflow that
-              prioritizes performance, scalability, and clean architecture.
+              Every project starts with understanding the problem, the business
+              goals, and the people using the product. I translate those
+              requirements into a clear technical direction, choosing the right
+              architecture and tools before development begins.
             </p>
 
             <p>
-              Security is a key part of my process. I implement best practices
-              such as secure authentication, data validation, and protection
-              against common vulnerabilities to ensure your application is safe
-              and reliable.
+              I focus on building systems that are clean, maintainable, secure,
+              and built to perform. From frontend architecture and API design to
+              database structure and deployment, I make technical decisions with
+              long-term reliability and scalability in mind.
             </p>
 
             <p>
-              I also provide ongoing support, continuous improvements, and
-              performance optimization to keep your product running smoothly as
-              your business grows.
+              Development does not stop at launch. I continue to improve,
+              optimize, debug, and evolve applications as requirements change,
+              ensuring the product remains reliable as the business grows.
             </p>
           </div>
 
@@ -89,10 +89,16 @@ export default function TechStack() {
             <div className="tech-list">
               <span>React</span>
               <span>Next.js</span>
+              <span>Vue.js</span>
               <span>Node.js</span>
               <span>Laravel</span>
+              <span>JavaScript</span>
+              <span>Supabase</span>
               <span>MongoDB</span>
+              <span>Firebase</span>
               <span>Tailwind CSS</span>
+              <span>Cloudinary</span>
+              <span>REST APIs</span>
             </div>
           </div>
         </div>

@@ -9,16 +9,12 @@
 }
 
 body.light-mode {
-  /* LIGHT MODE */
   --ad-body: #eee6d8;
   --ad-secondary: #f8f3ea;
-
   --ad-buttons: #3157a6;
   --ad-button-hover: #26478c;
-
   --ad-text: #263238;
   --ad-text-muted: #6f685f;
-
   --ad-border: rgba(38, 50, 56, 0.14);
 }
 
@@ -889,11 +885,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle at top left,
     rgba(37, 99, 235, 0.15),
     transparent 60%
-  );
+  ); */
   opacity: 0;
   /* transition: 0.3s ease; */
 }
@@ -1555,23 +1551,29 @@ body {
 /* ========================= */
 
 .contact-btn {
-  margin-top: 10px;
+  display: inline-flex !important;
+  width: auto !important;
+  max-width: max-content;
+  justify-self: center;
+  align-self: center;
 
-  display: inline-flex;
-  align-items: center;
+  margin: 10px auto 0;
+
+  padding: 10px 16px;
+  border-radius: 10px;
+
+  font-weight: 500;
+  text-decoration: none;
+
   justify-content: center;
+  align-items: center;
 
   background: var(--ad-buttons);
   color: white;
 
   border: none;
-  border-radius: 999px;
-
-  padding: 14px 28px;
-  font-size: 14px;
-  font-weight: 500;
-
   cursor: pointer;
+
   transition: all 0.3s ease;
 }
 
@@ -1747,7 +1749,7 @@ body {
 .tech-divider {
   height: 1px;
   background: var(--ad-border);
-  opacity: 0.2;
+  /* opacity: 0.2; */
   margin: 16px 0 20px;
 }
 
@@ -1946,7 +1948,7 @@ body {
 
 .exp-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--ad-border);
   margin: 6px 0;
 }
 
@@ -2074,11 +2076,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle at top,
     rgba(37, 99, 235, 0.2),
     transparent 70%
-  );
+  ); */
   opacity: 0;
   transition: 0.4s ease;
 }

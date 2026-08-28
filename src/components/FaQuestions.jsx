@@ -3,34 +3,38 @@ import { MessageCircle } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 const FAQ_ITEMS = [
   {
-    q: "How much do you charge for a project?",
-    a: "Pricing depends on the scope, features, and complexity of the project. After understanding your requirements, I provide a clear and fair quote tailored to your needs.",
+    q: "How do you approach a new project?",
+    a: "I start by understanding the business goals, users, technical requirements, and expected outcomes. From there, I define the project structure, technology stack, key features, and development approach before moving into implementation.",
   },
+
   {
-    q: "How long does it take to complete a website?",
-    a: "Most projects take between 1 to 4 weeks depending on size and requirements. Larger or more complex platforms may take longer, but timelines are always discussed upfront.",
+    q: "Can you work on an existing application or codebase?",
+    a: "Yes. I can work with existing applications, whether you need new features, performance improvements, bug fixes, refactoring, or a broader technical upgrade. I first review the codebase and architecture to understand how the system works before making changes.",
   },
+
   {
-    q: "Do you work with clients internationally?",
-    a: "Yes, I work with clients globally and communicate effectively through tools like WhatsApp, email, and video calls to ensure smooth collaboration.",
+    q: "How do you handle scalability and performance?",
+    a: "I build with scalability in mind from the beginning, focusing on efficient architecture, optimized queries, responsive interfaces, caching where appropriate, and clean, maintainable code. The goal is to make the application perform well as traffic, data, and functionality grow.",
   },
+
   {
-    q: "Can you help with design as well as development?",
-    a: "Absolutely. I handle both UI/UX design and development, ensuring your website looks great and functions seamlessly.",
+    q: "Can you take ownership of the technical side of a project?",
+    a: "Yes. I can take ownership from planning and architecture through development, testing, deployment, and ongoing improvements. I focus on making sound technical decisions while keeping the product aligned with its goals and requirements.",
   },
+
   {
-    q: "Do you offer ongoing support after delivery?",
-    a: "Yes, I provide ongoing support including updates, bug fixes, performance improvements, and maintenance to keep your website running smoothly.",
+    q: "How do you approach security?",
+    a: "Security is considered throughout development rather than added at the end. I follow practices such as input validation, secure authentication, authorization, protected API endpoints, safe data handling, and proper environment and deployment configuration.",
   },
+
   {
-    q: "Will my website be mobile-friendly?",
-    a: "Yes, all websites I build are fully responsive and optimized for mobile, tablet, and desktop devices.",
+    q: "What happens after the application is deployed?",
+    a: "Deployment is not the end of the process. I can provide ongoing maintenance, monitoring, bug fixes, performance improvements, feature updates, and technical support as the product evolves.",
   },
 ];
 
 export default function FaQuestions() {
-  const [openIndex, setOpenIndex] = useState(null);
-
+  const [openIndex, setOpenIndex] = useState(0);
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
