@@ -347,11 +347,8 @@ body {
 }
 .footer-wrapper {
   position: relative;
-  bottom: 0;
-  left: 0;
   width: 100%;
   opacity: 0.9;
-  backdrop-filter: blur(6px);
   padding: 80px 20px 40px;
   background: var(--ad-secondary);
   border-top: 1px solid var(--ad-border);
@@ -2067,7 +2064,7 @@ body {
   flex-direction: column;
   gap: 14px;
 
-  transition: all 0.35s ease;
+  /* transition: all 0.35s ease; */
   position: relative;
   overflow: hidden;
 }

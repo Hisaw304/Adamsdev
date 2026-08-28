@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaXTwitter,
   FaLinkedinIn,
@@ -8,23 +7,16 @@ import {
   FaGithub,
 } from "react-icons/fa6";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Footer() {
   const footerRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".footer-content", {
-        y: 100,
+        y: 40,
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".footer-content",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
+        duration: 0.7,
+        ease: "power3.out",
       });
     }, footerRef);
 
@@ -44,7 +36,6 @@ export default function Footer() {
   return (
     <footer className="footer-wrapper" ref={footerRef}>
       <div className="footer-content">
-        {/* Top Section */}
         <div className="grid md:grid-cols-3 gap-10">
           {/* Branding */}
           <div
@@ -115,7 +106,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
         <div className="footer-bottom">
           © {new Date().getFullYear()} ADAMS. All rights reserved.
         </div>

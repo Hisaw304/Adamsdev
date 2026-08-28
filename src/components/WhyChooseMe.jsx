@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaChartLine,
   FaBolt,
@@ -8,6 +10,8 @@ import {
 } from "react-icons/fa";
 
 import SectionHeader from "./SectionHeader";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
@@ -38,8 +42,44 @@ const features = [
 ];
 
 export default function WhyChooseMe() {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".why-card");
+
+      gsap.from(cards, {
+        opacity: 0,
+        y: 40,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".why-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      gsap.from(".why-cta", {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        delay: 0.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".why-cta",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="why-section">
+    <section className="why-section" ref={sectionRef}>
       <div className="why-container">
         {/* HEADER */}
         <SectionHeader
@@ -52,33 +92,22 @@ export default function WhyChooseMe() {
         {/* CARDS */}
         <div className="why-grid">
           {features.map((item, i) => (
-            <motion.div
-              key={i}
-              className="why-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
+            <div className="why-card" key={i}>
               <div className="why-icon">{item.icon}</div>
+
               <h3>{item.title}</h3>
+
               <p>{item.text}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          className="why-cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          viewport={{ once: true }}
-        >
+        <div className="why-cta">
           <a href="#contact" className="why-btn">
             Start a Project
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
