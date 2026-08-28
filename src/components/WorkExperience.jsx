@@ -1,14 +1,22 @@
-import { motion } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useLayoutEffect, useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [lineHeight, setLineHeight] = useState(0);
+
+  const sectionRef = useRef(null);
   const dotRefs = useRef([]);
+
   useEffect(() => {
     if (activeIndex >= 0 && dotRefs.current[activeIndex]) {
       const dot = dotRefs.current[activeIndex];
       const timeline = dot.closest(".timeline");
+
+      if (!timeline) return;
 
       const dotRect = dot.getBoundingClientRect();
       const timelineRect = timeline.getBoundingClientRect();
@@ -18,6 +26,31 @@ export default function Experience() {
       setLineHeight(dotCenter);
     }
   }, [activeIndex]);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray(".timeline-item");
+
+      if (!items.length) return;
+
+      gsap.from(items, {
+        opacity: 0,
+        y: 60,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+
+        scrollTrigger: {
+          trigger: ".timeline",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const data = [
     {
       role: "Freelance Developer",
@@ -45,23 +78,10 @@ export default function Experience() {
       ],
       tools: "Next.js, Vue, Supabase, Cloudinary, Bootstrap",
     },
-    // {
-    //   role: "Freelance Developer",
-    //   company: "Fiverr",
-    //   duration: "2023 — Present",
-    //   location: "Remote",
-    //   points: [
-    //     "Built custom websites and web apps for global clients",
-    //     "Delivered scalable and high-performance solutions",
-    //     "Worked across SaaS, law, real estate, and e-commerce",
-    //     "Handled full project lifecycle from design to deployment",
-    //   ],
-    //   tools: "React, Laravel, Tailwind, MongoDB, Firebase",
-    // },
   ];
 
   return (
-    <section className="experience-section">
+    <section className="experience-section" ref={sectionRef}>
       <div className="experience-container">
         {/* HEADER */}
         <div className="portfolio-header">
@@ -88,18 +108,16 @@ export default function Experience() {
           />
 
           {data.map((item, i) => (
-            <motion.div
+            <div
               key={i}
               className="timeline-item"
               onClick={() => setActiveIndex(i)}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
             >
               {/* DOT */}
               <div
-                ref={(el) => (dotRefs.current[i] = el)}
+                ref={(el) => {
+                  dotRefs.current[i] = el;
+                }}
                 className={`timeline-dot ${activeIndex >= i ? "active" : ""}`}
               />
 
@@ -113,6 +131,7 @@ export default function Experience() {
 
                 {/* TITLE */}
                 <h3>{item.role}</h3>
+
                 <p className="exp-company">{item.company}</p>
 
                 <div className="exp-divider" />
@@ -130,7 +149,7 @@ export default function Experience() {
                   <p>{item.tools}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

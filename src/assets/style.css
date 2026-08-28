@@ -1355,7 +1355,9 @@ body {
 /* ICON */
 
 .faq-support-icon {
-  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 14px;
 }
 

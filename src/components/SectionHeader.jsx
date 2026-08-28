@@ -1,52 +1,54 @@
-import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-    filter: "blur(8px)",
-    scale: 0.98,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1], // premium easing
-    },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SectionHeader({ tag, title, highlight, text }) {
+  const headerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const elements = gsap.utils.toArray(".section-header-item");
+
+      gsap.fromTo(
+        elements,
+        {
+          opacity: 0,
+          y: 30,
+          filter: "blur(8px)",
+          scale: 0.98,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.08,
+          delay: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <motion.div
-      className="portfolio-header"
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-50px" }}
-    >
-      <motion.span className="portfolio-tag" variants={item}>
-        {tag}
-      </motion.span>
+    <div className="portfolio-header" ref={headerRef}>
+      <span className="portfolio-tag section-header-item">{tag}</span>
 
-      <motion.h2 variants={item}>
+      <h2 className="section-header-item">
         {title} <span>{highlight}</span>
-      </motion.h2>
+      </h2>
 
-      <motion.p variants={item}>{text}</motion.p>
-    </motion.div>
+      <p className="section-header-item">{text}</p>
+    </div>
   );
 }

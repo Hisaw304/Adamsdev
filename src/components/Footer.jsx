@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaXTwitter,
   FaLinkedinIn,
@@ -6,67 +8,108 @@ import {
   FaGithub,
 } from "react-icons/fa6";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Footer() {
+  const footerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".footer-content", {
+        y: 100,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".footer-content",
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleHomeClick = () => {
+    const home = document.getElementById("home");
+
+    if (home) {
+      home.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <footer className="footer-wrapper">
-      <motion.div
-        className="footer-content"
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: false }}
-      >
+    <footer className="footer-wrapper" ref={footerRef}>
+      <div className="footer-content">
         {/* Top Section */}
         <div className="grid md:grid-cols-3 gap-10">
           {/* Branding */}
           <div
             className="flex flex-col leading-tight cursor-pointer"
-            onClick={() => handleScroll("Home")}
+            onClick={handleHomeClick}
           >
             <h1 className="text-xl font-bold text-[var(--ad-text)] tracking-wider">
               ADAMS
             </h1>
+
             <span className="text-sm text-[var(--ad-text-muted)]">
               Full Stack Developer
             </span>
           </div>
+
           {/* Quick Links */}
           <div>
             <h3 className="footer-title">Quick Links</h3>
+
             <ul className="footer-links">
               <li>
                 <a href="#home">Home</a>
               </li>
+
               <li>
                 <a href="#projects">Projects</a>
               </li>
+
               <li>
                 <a href="#services">Services</a>
               </li>
+
               <li>
                 <a href="#contact">Contact</a>
               </li>
+
               <li>
                 <a href="#testimonial">Testimonial</a>
               </li>
             </ul>
           </div>
-          {/* Socials */}
 
+          {/* Socials */}
           <div>
             <h3 className="footer-title">Socials</h3>
+
             <ul className="footer-links">
               <li className="flex items-center gap-2">
-                <FaGithub size={16} /> Github
+                <FaGithub size={16} />
+                Github
               </li>
+
               <li className="flex items-center gap-2">
-                <FaInstagram size={16} /> Instagram
+                <FaInstagram size={16} />
+                Instagram
               </li>
+
               <li className="flex items-center gap-2">
-                <FaXTwitter size={16} /> Twitter
+                <FaXTwitter size={16} />
+                Twitter
               </li>
+
               <li className="flex items-center gap-2">
-                <FaLinkedinIn size={16} /> LinkedinIn
+                <FaLinkedinIn size={16} />
+                LinkedinIn
               </li>
             </ul>
           </div>
@@ -76,7 +119,7 @@ export default function Footer() {
         <div className="footer-bottom">
           © {new Date().getFullYear()} ADAMS. All rights reserved.
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 }

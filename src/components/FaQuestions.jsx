@@ -70,7 +70,9 @@ export default function FaQuestions() {
           {/* RIGHT */}
           <div className="faq-support">
             <div className="faq-support-card">
-              <div className="faq-support-icon">💬</div>
+              <div className="faq-support-icon">
+                <MessageCircle size={22} strokeWidth={2} />
+              </div>
 
               <h3>Still have questions?</h3>
 

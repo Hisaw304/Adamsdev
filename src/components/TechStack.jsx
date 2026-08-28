@@ -1,8 +1,47 @@
-import { motion } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "../components/SectionHeader";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function TechStack() {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // LEFT CARD
+      gsap.from(".tech-card.approach", {
+        opacity: 0,
+        x: -60,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".tech-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // RIGHT CARD
+      gsap.from(".tech-card.stack", {
+        opacity: 0,
+        x: 60,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".tech-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="tech-section">
+    <section className="tech-section" ref={sectionRef}>
       <div className="tech-container">
         {/* HEADER */}
         <SectionHeader
@@ -15,13 +54,7 @@ export default function TechStack() {
         {/* GRID */}
         <div className="tech-grid">
           {/* LEFT - APPROACH */}
-          <motion.div
-            className="tech-card approach"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="tech-card approach">
             <h3>Development Approach</h3>
 
             <div className="tech-divider" />
@@ -45,16 +78,10 @@ export default function TechStack() {
               performance optimization to keep your product running smoothly as
               your business grows.
             </p>
-          </motion.div>
+          </div>
 
           {/* RIGHT - STACK */}
-          <motion.div
-            className="tech-card stack"
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="tech-card stack">
             <h3>Tech Stack</h3>
 
             <div className="tech-divider" />
@@ -67,7 +94,7 @@ export default function TechStack() {
               <span>MongoDB</span>
               <span>Tailwind CSS</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
