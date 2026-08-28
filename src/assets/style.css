@@ -21,9 +21,11 @@ body.light-mode {
 
   --ad-border: rgba(38, 50, 56, 0.14);
 }
+
 html,
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   max-width: 100%;
 }
 * {
@@ -1327,13 +1329,13 @@ body {
 /* ========================= */
 
 .faq-support {
-  position: relative;
+  /* position: relative; */
 }
 
 /* CARD */
 
 .faq-support-card {
-  position: sticky;
+  /* position: sticky; */
   top: 120px;
 
   background: var(--ad-secondary);
