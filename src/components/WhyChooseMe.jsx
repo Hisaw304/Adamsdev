@@ -2,46 +2,48 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  FaChartLine,
-  FaBolt,
-  FaLayerGroup,
-  FaBriefcase,
-  FaRocket,
-} from "react-icons/fa";
+  ArrowUpRight,
+  BarChart3,
+  Bolt,
+  BriefcaseBusiness,
+  Layers3,
+  Rocket,
+} from "lucide-react";
 
 import SectionHeader from "./SectionHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
+const reasons = [
   {
-    icon: <FaChartLine />,
+    number: "01",
+    icon: BarChart3,
     title: "Business-Focused Development",
-    text: "I don't build websites just to look good. I focus on understanding the business behind the project and building experiences that support real goals — from generating leads to improving customer journeys.",
+    text: "I look beyond the interface to understand what the product or business actually needs, then build around those goals.",
   },
-
   {
-    icon: <FaLayerGroup />,
+    number: "02",
+    icon: Layers3,
     title: "Full-Stack Ownership",
-    text: "From frontend interfaces to backend logic, databases, APIs, authentication, and deployment, I can handle the technical side of the project without you having to coordinate multiple developers.",
+    text: "Frontend, backend, databases, APIs, authentication, and deployment — I can take ownership of the technical side from start to finish.",
   },
-
   {
-    icon: <FaBolt />,
+    number: "03",
+    icon: Bolt,
     title: "Problem-Solving Mindset",
-    text: "Technical issues are part of every serious project. I investigate problems, identify the root cause, and build practical solutions instead of relying on temporary fixes.",
+    text: "I focus on finding the root of a problem and building practical solutions rather than patching symptoms.",
   },
-
   {
-    icon: <FaBriefcase />,
+    number: "04",
+    icon: BriefcaseBusiness,
     title: "Built for Real-World Use",
-    text: "My experience spans business websites, SaaS products, e-commerce platforms, and custom web applications, giving me a practical understanding of different users, workflows, and business requirements.",
+    text: "My experience across business websites, SaaS products, e-commerce, and custom applications helps me build for actual users and workflows.",
   },
-
   {
-    icon: <FaRocket />,
+    number: "05",
+    icon: Rocket,
     title: "Performance & Scalability",
-    text: "I build with long-term performance in mind, focusing on clean architecture, efficient data handling, responsive interfaces, and a foundation that can evolve as your product and users grow.",
+    text: "I build with clean architecture, responsive interfaces, efficient data handling, and room for the product to grow.",
   },
 ];
 
@@ -49,67 +51,161 @@ export default function WhyChooseMe() {
   const sectionRef = useRef(null);
 
   useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".why-card");
+      const header = section.querySelector(".why-editorial-header");
+      const statement = section.querySelector(".why-statement");
+      const statementItems = section.querySelectorAll(".why-statement > *");
+      const reasons = section.querySelectorAll(".why-reason");
+      const cta = section.querySelector(".why-editorial-cta");
 
-      gsap.from(cards, {
-        opacity: 0,
-        y: 40,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".why-grid",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
+      if (header) {
+        gsap.from(header.children, {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: header,
+            start: "top 82%",
+            once: true,
+          },
+        });
+      }
+
+      if (statement) {
+        gsap.from(statementItems, {
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statement,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      if (reasons.length) {
+        gsap.from(reasons, {
+          y: 35,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section.querySelector(".why-reasons"),
+            start: "top 82%",
+            once: true,
+          },
+        });
+      }
+
+      if (cta) {
+        gsap.from(cta.children, {
+          y: 25,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cta,
+            start: "top 88%",
+            once: true,
+          },
+        });
+      }
+
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
+    }, section);
 
-      gsap.from(".why-cta", {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        delay: 0.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".why-cta",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section className="why-section" ref={sectionRef}>
       <div className="why-container">
-        {/* HEADER */}
-        <SectionHeader
-          tag="-Why Choose Me-"
-          title="What You Get"
-          highlight="Working With Me"
-          text="More than just a developer — I bring strategy, execution, and reliability to help your business grow online."
-        />
-
-        {/* CARDS */}
-        <div className="why-grid">
-          {features.map((item, i) => (
-            <div className="why-card" key={i}>
-              <div className="why-icon">{item.icon}</div>
-
-              <h3>{item.title}</h3>
-
-              <p>{item.text}</p>
-            </div>
-          ))}
+        <div className="why-editorial-header">
+          <SectionHeader
+            tag="-Why Choose Me-"
+            title="What You Get"
+            highlight="Working With Me"
+            text="More than just development — I bring strategy, technical ownership, and a practical approach to every project."
+          />
         </div>
 
-        {/* CTA */}
-        <div className="why-cta">
+        <div className="why-editorial">
+          <div className="why-statement">
+            <span className="why-statement-label">The difference</span>
+
+            <h3>I think beyond the code. </h3>
+
+            <p>
+              A good website or application should do more than exist online. It
+              should solve a problem, make things easier for people, and create
+              a meaningful result for the business behind it.
+            </p>
+
+            <div className="why-statement-mark">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div className="why-reasons">
+            {reasons.map((reason) => {
+              const Icon = reason.icon;
+
+              return (
+                <div className="why-reason" key={reason.number}>
+                  <span className="why-reason-number">{reason.number}</span>
+
+                  <div className="why-reason-icon">
+                    <Icon size={19} strokeWidth={1.7} aria-hidden="true" />
+                  </div>
+
+                  <div className="why-reason-content">
+                    <h4>{reason.title}</h4>
+                    <p>{reason.text}</p>
+                  </div>
+
+                  <ArrowUpRight
+                    className="why-reason-arrow"
+                    size={19}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="why-editorial-cta">
+          <div className="why-cta-copy">
+            <span>Ready when you are</span>
+
+            <h4>
+              Build with clarity.
+              <span> Launch with confidence.</span>
+            </h4>
+          </div>
+
           <a href="#contact" className="why-btn">
-            Start a Project
+            <span>Start a Project</span>
+
+            <ArrowUpRight size={19} strokeWidth={1.8} />
           </a>
         </div>
       </div>
