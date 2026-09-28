@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 
 import project7 from "../assets/project7.png";
@@ -211,7 +212,13 @@ export default function Portfolio() {
                   rel="noopener noreferrer"
                 >
                   <span>View Project</span>
-                  <span className="view-arrow">↗</span>
+
+                  <ArrowUpRight
+                    className="view-arrow"
+                    size={17}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
                 </a>
               </div>
             </article>
@@ -225,7 +232,9 @@ export default function Portfolio() {
 
       <div className="why-cta">
         <a href="#contact" className="why-btn">
-          Discuss Your Project →
+          <span>Discuss Your Project</span>
+
+          <ArrowRight size={18} strokeWidth={1.8} aria-hidden="true" />
         </a>
       </div>
     </section>

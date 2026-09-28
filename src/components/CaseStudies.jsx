@@ -46,126 +46,155 @@ const CaseStudies = () => {
 
     const ctx = gsap.context(() => {
       /* =========================================
-         HEADER REVEAL
-      ========================================= */
+       SECTION HEADER
+    ========================================= */
 
-      gsap.from(".case-studies-header > *", {
-        y: 45,
+      const headerElements = section.querySelectorAll(
+        ".case-studies-header > *"
+      );
+
+      gsap.from(headerElements, {
+        y: 40,
         opacity: 0,
-        duration: 1,
+        duration: 0.9,
         stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".case-studies-header",
-          start: "top 82%",
+          trigger: section.querySelector(".case-studies-header"),
+          start: "top 80%",
           once: true,
         },
       });
 
       /* =========================================
-         CASE STUDIES
-      ========================================= */
+       CASE STUDIES
+    ========================================= */
 
-      gsap.utils.toArray(".case-study").forEach((study) => {
+      const studies = section.querySelectorAll(".case-study");
+
+      studies.forEach((study) => {
         const meta = study.querySelector(".case-study-meta");
         const title = study.querySelector(".case-study-heading h3");
         const intro = study.querySelector(".case-study-intro");
         const blocks = study.querySelectorAll(".case-study-block");
-        const link = study.querySelector(".case-study-link");
+        const footer = study.querySelector(".case-study-footer");
 
-        /* Project metadata */
+        /* -----------------------------------------
+         Project metadata
+      ----------------------------------------- */
 
         gsap.from(meta, {
           y: 25,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: study,
-            start: "top 78%",
-            once: true,
-          },
-        });
-
-        /* Project title */
-
-        gsap.from(title, {
-          y: 70,
-          opacity: 0,
-          duration: 1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: title,
             start: "top 82%",
             once: true,
           },
         });
 
-        /* Intro */
+        /* -----------------------------------------
+         Project title
+      ----------------------------------------- */
 
-        gsap.from(intro, {
-          y: 35,
+        gsap.from(title, {
+          y: 45,
           opacity: 0,
           duration: 0.9,
-          delay: 0.1,
-          ease: "power3.out",
+          ease: "power4.out",
           scrollTrigger: {
-            trigger: intro,
+            trigger: title,
             start: "top 85%",
             once: true,
           },
         });
 
-        /* Problem / Solution / Result */
+        /* -----------------------------------------
+         Intro
+      ----------------------------------------- */
 
-        gsap.from(blocks, {
-          y: 45,
+        gsap.from(intro, {
+          y: 25,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.15,
+          delay: 0.08,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: study.querySelector(".case-study-content"),
-            start: "top 82%",
+            trigger: intro,
+            start: "top 88%",
             once: true,
           },
         });
 
-        /* Live project link */
+        /* -----------------------------------------
+         Problem / Solution / Result
+      ----------------------------------------- */
 
-        gsap.from(link, {
-          y: 20,
+        gsap.from(blocks, {
+          y: 30,
           opacity: 0,
-          duration: 0.8,
-          delay: 0.25,
+          duration: 0.7,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: link,
-            start: "top 88%",
+            trigger: study.querySelector(".case-study-content"),
+            start: "top 84%",
+            once: true,
+          },
+        });
+
+        /* -----------------------------------------
+         Footer / Live project
+      ----------------------------------------- */
+
+        gsap.from(footer, {
+          y: 20,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 90%",
             once: true,
           },
         });
       });
 
       /* =========================================
-         CTA REVEAL
-      ========================================= */
+       BOTTOM CTA
+    ========================================= */
 
-      gsap.from(".case-studies-cta > *", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".case-studies-cta",
-          start: "top 82%",
-          once: true,
-        },
+      const cta = section.querySelector(".case-studies-cta");
+
+      if (cta) {
+        gsap.from(cta.children, {
+          y: 35,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cta,
+            start: "top 82%",
+            once: true,
+          },
+        });
+      }
+
+      /* =========================================
+       REFRESH AFTER PAGE LAYOUT
+    ========================================= */
+
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
