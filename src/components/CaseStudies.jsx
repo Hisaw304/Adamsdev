@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,7 +251,12 @@ const CaseStudies = () => {
                   rel="noopener noreferrer"
                 >
                   <span>View live project</span>
-                  <span>↗</span>
+
+                  <ArrowUpRight
+                    size={18}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
                 </a>
               </div>
             </article>
@@ -273,7 +279,8 @@ const CaseStudies = () => {
 
           <a href="#contact" className="case-studies-cta-link">
             <span>Discuss your project</span>
-            <span>↗</span>
+
+            <ArrowUpRight size={19} strokeWidth={1.8} aria-hidden="true" />
           </a>
         </div>
       </div>
