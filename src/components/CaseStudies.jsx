@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
-
+import SectionHeader from "../components/SectionHeader";
 gsap.registerPlugin(ScrollTrigger);
 
 const caseStudies = [
@@ -208,24 +208,16 @@ const CaseStudies = () => {
             SECTION HEADER
         ===================================== */}
 
-        <header className="case-studies-header">
-          <span className="case-studies-tag">— Case Studies —</span>
-
-          <h2>
-            Selected work,
-            <span> built with purpose.</span>
-          </h2>
-
-          <p>
-            A closer look at projects where design, development, and business
-            goals came together to solve real problems.
-          </p>
-        </header>
+        <SectionHeader
+          tag="-Case Studies-"
+          title="Behind"
+          highlight="The Work"
+          text="A closer look at the problems, decisions, and solutions that shaped these projects from the initial idea to the final product."
+        />
 
         {/* =====================================
             CASE STUDIES
         ===================================== */}
-
         <div className="case-studies-list">
           {caseStudies.map((study) => (
             <article className="case-study" key={study.number}>
@@ -291,11 +283,9 @@ const CaseStudies = () => {
             </article>
           ))}
         </div>
-
         {/* =====================================
             CTA
         ===================================== */}
-
         <div className="case-studies-cta">
           <div className="case-studies-cta-content">
             <span>Have a project in mind?</span>

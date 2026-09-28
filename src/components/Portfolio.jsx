@@ -146,16 +146,15 @@ export default function Portfolio() {
       {/* ========================= */}
 
       <SectionHeader
-        tag="-Portfolio-"
-        title="My Past"
+        tag="-Selected Projects-"
+        title="Selected"
         highlight="Projects"
-        text="A selection of digital experiences I’ve designed and developed for businesses, brands, and products."
+        text="A selection of digital products and experiences I’ve designed and developed across business, e-commerce, SaaS, and custom web applications."
       />
 
       {/* ========================= */}
       {/* Horizontal Scroll Area */}
       {/* ========================= */}
-
       <div className="portfolio-scroll-area">
         <div className="portfolio-stack" ref={trackRef}>
           {projects.map((project, i) => (
@@ -225,11 +224,9 @@ export default function Portfolio() {
           ))}
         </div>
       </div>
-
       {/* ========================= */}
       {/* CTA */}
       {/* ========================= */}
-
       <div className="why-cta">
         <a href="#contact" className="why-btn">
           <span>Discuss Your Project</span>
