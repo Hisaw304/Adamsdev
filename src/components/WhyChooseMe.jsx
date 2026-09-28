@@ -56,18 +56,20 @@ export default function WhyChooseMe() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
+      /* ================================
+       HEADER
+    ================================= */
+
       const header = section.querySelector(".why-editorial-header");
-      const statement = section.querySelector(".why-statement");
-      const statementItems = section.querySelectorAll(".why-statement > *");
-      const reasons = section.querySelectorAll(".why-reason");
-      const cta = section.querySelector(".why-editorial-cta");
 
       if (header) {
-        gsap.from(header.children, {
-          y: 30,
+        const headerElements = header.querySelectorAll(".section-header > *");
+
+        gsap.from(headerElements, {
+          y: 35,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.1,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: header,
@@ -77,42 +79,67 @@ export default function WhyChooseMe() {
         });
       }
 
+      /* ================================
+       MAIN STATEMENT
+    ================================= */
+
+      const statement = section.querySelector(".why-statement");
+
       if (statement) {
-        gsap.from(statementItems, {
-          y: 40,
+        const statementElements = statement.querySelectorAll(
+          ".why-statement-label, h3, p, .why-statement-mark"
+        );
+
+        gsap.from(statementElements, {
+          y: 35,
           opacity: 0,
-          duration: 0.9,
+          duration: 0.8,
           stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: statement,
-            start: "top 80%",
+            start: "top 78%",
             once: true,
           },
         });
       }
 
-      if (reasons.length) {
-        gsap.from(reasons, {
+      /* ================================
+       REASONS
+    ================================= */
+
+      const reasonsList = section.querySelector(".why-reasons");
+      const reasonItems = section.querySelectorAll(".why-reason");
+
+      if (reasonsList && reasonItems.length) {
+        gsap.from(reasonItems, {
           y: 35,
           opacity: 0,
-          duration: 0.75,
+          duration: 0.7,
           stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: section.querySelector(".why-reasons"),
+            trigger: reasonsList,
             start: "top 82%",
             once: true,
           },
         });
       }
 
+      /* ================================
+       CTA
+    ================================= */
+
+      const cta = section.querySelector(".why-editorial-cta");
+
       if (cta) {
-        gsap.from(cta.children, {
+        const ctaElements = cta.querySelectorAll(".why-cta-copy, .why-btn");
+
+        gsap.from(ctaElements, {
           y: 25,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.1,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: cta,
@@ -122,9 +149,16 @@ export default function WhyChooseMe() {
         });
       }
 
-      requestAnimationFrame(() => {
+      /* ================================
+       REFRESH AFTER LAYOUT
+    ================================= */
+
+      const refresh = () => {
         ScrollTrigger.refresh();
-      });
+      };
+
+      requestAnimationFrame(refresh);
+      setTimeout(refresh, 300);
     }, section);
 
     return () => {

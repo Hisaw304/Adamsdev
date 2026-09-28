@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
   Code2,
@@ -8,6 +9,8 @@ import {
   Wrench,
 } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -47,65 +50,144 @@ export default function WhatIDo() {
   const [activeService, setActiveService] = useState(0);
 
   useLayoutEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
     const ctx = gsap.context(() => {
-      gsap.from(".services-section .section-header > *", {
-        y: 35,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-section",
-          start: "top 80%",
-          once: true,
-        },
+      /* ================================
+         HEADER
+      ================================= */
+
+      const header = section.querySelector(".section-header");
+
+      if (header) {
+        const headerElements = header.querySelectorAll(":scope > *");
+
+        gsap.from(headerElements, {
+          y: 35,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: header,
+            start: "top 82%",
+            once: true,
+          },
+        });
+      }
+
+      /* ================================
+         MAIN PANEL
+      ================================= */
+
+      const panel = section.querySelector(".services-panel");
+
+      if (panel) {
+        gsap.from(panel, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top 82%",
+            once: true,
+          },
+        });
+      }
+
+      /* ================================
+         SERVICE LIST
+      ================================= */
+
+      const serviceItems = section.querySelectorAll(".service-list-item");
+
+      if (serviceItems.length) {
+        gsap.from(serviceItems, {
+          x: -25,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      /* ================================
+         ACTIVE SERVICE
+      ================================= */
+
+      const detail = section.querySelector(".service-detail-inner");
+
+      if (detail) {
+        gsap.from(detail, {
+          x: 30,
+          opacity: 0,
+          duration: 0.9,
+          delay: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      /* ================================
+         BOTTOM CTA
+      ================================= */
+
+      const cta = section.querySelector(".services-cta");
+
+      if (cta) {
+        const ctaElements = cta.querySelectorAll(":scope > *");
+
+        gsap.from(ctaElements, {
+          y: 25,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cta,
+            start: "top 90%",
+            once: true,
+          },
+        });
+      }
+
+      /* ================================
+         REFRESH
+      ================================= */
+
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
 
-      gsap.from(".services-panel", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-panel",
-          start: "top 82%",
-          once: true,
-        },
-      });
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 300);
+    }, section);
 
-      gsap.from(".service-list-item", {
-        x: -25,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-panel",
-          start: "top 80%",
-          once: true,
-        },
-      });
-
-      gsap.from(".services-cta", {
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-cta",
-          start: "top 90%",
-          once: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   const handleServiceChange = (index) => {
     if (index === activeService) return;
 
-    const nextService = services[index];
+    if (!contentRef.current) {
+      setActiveService(index);
+      return;
+    }
 
     gsap.to(contentRef.current, {
       opacity: 0,
@@ -115,19 +197,23 @@ export default function WhatIDo() {
       onComplete: () => {
         setActiveService(index);
 
-        gsap.fromTo(
-          contentRef.current,
-          {
-            opacity: 0,
-            y: 15,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            ease: "power3.out",
-          }
-        );
+        requestAnimationFrame(() => {
+          if (!contentRef.current) return;
+
+          gsap.fromTo(
+            contentRef.current,
+            {
+              opacity: 0,
+              y: 15,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.45,
+              ease: "power3.out",
+            }
+          );
+        });
       },
     });
   };
