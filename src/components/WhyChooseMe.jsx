@@ -9,6 +9,7 @@ import {
   Layers3,
   Rocket,
 } from "lucide-react";
+import whyImage from "../assets/why-image.jpg";
 
 import SectionHeader from "./SectionHeader";
 
@@ -180,9 +181,13 @@ export default function WhyChooseMe() {
 
         <div className="why-editorial">
           <div className="why-statement">
+            <div className="why-image">
+              <img src={whyImage} alt="Full stack development workspace" />
+            </div>
+
             <span className="why-statement-label">The difference</span>
 
-            <h3>I think beyond the code. </h3>
+            <h3>I think beyond the code.</h3>
 
             <p>
               A good website or application should do more than exist online. It

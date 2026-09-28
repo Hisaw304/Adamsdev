@@ -3193,6 +3193,48 @@ body.light-mode .case-studies-cta-link {
    STATEMENT
 ================================ */
 
+.why-image {
+  width: 100%;
+  height: 260px;
+  margin-bottom: 38px;
+  overflow: hidden;
+  background: var(--ad-secondary);
+}
+
+.why-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.why-image:hover img {
+  transform: scale(1.035);
+}
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media (max-width: 950px) {
+  .why-image {
+    height: 320px;
+    margin-bottom: 32px;
+  }
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width: 650px) {
+  .why-image {
+    height: 220px;
+    margin-bottom: 28px;
+  }
+}
+
 .why-statement {
   position: sticky;
   top: 120px;
