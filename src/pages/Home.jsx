@@ -8,12 +8,14 @@ import Contact from "../components/Contact";
 import TechStack from "../components/TechStack";
 import WorkExperience from "../components/WorkExperience";
 import WhyChooseMe from "../components/WhyChooseMe";
+import CaseStudies from "../components/CaseStudies";
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <Portfolio />
+      <CaseStudies />
       <WhatIDo />
       <WhyChooseMe />
       <TechStack />
