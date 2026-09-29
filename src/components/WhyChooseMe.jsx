@@ -235,10 +235,10 @@ export default function WhyChooseMe() {
           <div className="why-cta-copy">
             <span>Ready when you are</span>
 
-            <h4>
+            <h3>
               Build with clarity.
               <span> Launch with confidence.</span>
-            </h4>
+            </h3>
           </div>
 
           <a href="#contact" className="why-btn">

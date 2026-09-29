@@ -309,7 +309,7 @@ export default function WhatIDo() {
           CTA
       ===================================== */}
 
-      <div className="services-cta">
+      {/* <div className="services-cta">
         <div>
           <span>Have something specific in mind?</span>
 
@@ -324,7 +324,7 @@ export default function WhatIDo() {
 
           <ArrowUpRight size={19} strokeWidth={1.8} />
         </a>
-      </div>
+      </div> */}
     </section>
   );
 }

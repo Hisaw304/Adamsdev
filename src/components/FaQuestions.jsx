@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ArrowUpRight } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 const FAQ_ITEMS = [
   {
@@ -89,9 +89,11 @@ export default function FaQuestions() {
                 <a
                   href="https://wa.me/2347041624830"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="faq-btn primary"
                 >
-                  WhatsApp Me
+                  <span>WhatsApp Me</span>
+                  <ArrowUpRight size={18} strokeWidth={1.8} />
                 </a>
 
                 {/* <a href="#contact" className="faq-btn secondary">

@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -8,17 +9,16 @@ export default function Hero() {
   const heroRef = useRef(null);
 
   const stats = [
-    { value: 35, label: "Projects Completed" },
+    { value: 30, label: "Projects Completed" },
     { value: 4, label: "Years Experience" },
-    { value: 30, label: "Happy Clients" },
+    { value: 30, label: "Businesses Helped" },
   ];
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // =========================
-      // HERO INTRO
-      // =========================
+    const section = heroRef.current;
+    if (!section) return;
 
+    const ctx = gsap.context(() => {
       const heroTimeline = gsap.timeline({
         defaults: {
           ease: "power3.out",
@@ -29,37 +29,41 @@ export default function Hero() {
         .from(".hero-left", {
           opacity: 0,
           y: 40,
-          duration: 0.7,
+          duration: 0.8,
         })
         .from(
           ".hero-right",
           {
             opacity: 0,
-            x: 60,
-            scale: 0.8,
-            duration: 0.8,
+            x: 50,
+            scale: 0.9,
+            duration: 0.9,
           },
-          "-=0.45"
+          "-=0.5"
+        )
+        .from(
+          ".hero-stats",
+          {
+            opacity: 0,
+            y: 25,
+            duration: 0.7,
+          },
+          "-=0.4"
         );
-
-      // =========================
-      // STATS
-      // =========================
 
       gsap.from(".stat-item", {
         opacity: 0,
-        y: 40,
+        y: 25,
         duration: 0.7,
-        stagger: 0.2,
+        stagger: 0.12,
         ease: "power3.out",
-
         scrollTrigger: {
           trigger: ".hero-stats",
-          start: "top 85%",
-          toggleActions: "play none none reverse",
+          start: "top 90%",
+          once: true,
         },
       });
-    }, heroRef);
+    }, section);
 
     return () => ctx.revert();
   }, []);
@@ -68,41 +72,50 @@ export default function Hero() {
     <section className="hero-section" ref={heroRef}>
       <div className="hero-container">
         <div className="hero-grid">
+          {/* ========================= */}
           {/* LEFT CONTENT */}
+          {/* ========================= */}
+
           <div className="hero-left">
-            {/* Heading Card */}
-            <div className="hero-heading-card">
+            <div className="hero-heading">
               <p className="hero-greeting">Hello, I’m Adams.</p>
 
               <h1>
-                I Build High-Converting <br />
-                Websites That Grow <br />
-                Your Business
+                I Build Digital Products
+                <span> That Help Businesses Grow.</span>
               </h1>
             </div>
-
-            <div className="hero-info-card">
+            <div className="hero-info">
               <p className="hero-text">
-                I design and develop modern, fast, and scalable websites
-                tailored to help businesses and brands stand out, attract
-                clients, and drive real results online.
+                I’m a Full Stack Developer with 4+ years of experience building
+                modern websites and web applications for businesses, startups,
+                and individuals. I’ve helped <strong>30+ clients</strong> bring
+                their ideas to life through websites, platforms, and web
+                applications built around the way their businesses actually
+                work.
               </p>
 
-              <p className="hero-niche">
-                I partner with <span>ambitious businesses</span> — including{" "}
-                <span>law firms</span>, <span>real estate brands</span>,{" "}
-                <span>startups</span>, <span>agencies</span>,{" "}
-                <span>SaaS companies</span>, and more — to design and build
-                digital experiences that drive real growth.
+              <p className="hero-proof">
+                My approach goes beyond simply building a website. I focus on
+                understanding the business goal first, then creating solutions
+                that are{" "}
+                <strong>
+                  reliable, responsive, scalable, and built around real business
+                  needs.
+                </strong>
               </p>
 
               <a href="#contact" className="hero-btn">
-                Contact Me
+                <span>Contact Me</span>
+                <ArrowUpRight size={18} strokeWidth={1.8} />
               </a>
             </div>
           </div>
 
+          {/* ========================= */}
           {/* RIGHT IMAGE */}
+          {/* ========================= */}
+
           <div className="hero-right">
             <div className="home__img">
               <svg
@@ -124,10 +137,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* FULL WIDTH STATS */}
+        {/* ========================= */}
+        {/* STATS */}
+        {/* ========================= */}
+
         <div className="hero-stats">
-          {stats.map((item, i) => (
-            <div className="stat-item" key={i}>
+          {stats.map((item) => (
+            <div className="stat-item" key={item.label}>
               <h3>{item.value}+</h3>
               <p>{item.label}</p>
             </div>
