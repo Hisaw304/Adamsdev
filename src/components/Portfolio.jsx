@@ -144,26 +144,28 @@ export default function Portfolio() {
       {/* ========================= */}
       {/* Heading */}
       {/* ========================= */}
-
       <SectionHeader
         tag="-Selected Projects-"
         title="Selected"
         highlight="Projects"
         text="A selection of digital products and experiences I’ve designed and developed across business, e-commerce, SaaS, and custom web applications."
       />
-
       {/* ========================= */}
       {/* Horizontal Scroll Area */}
       {/* ========================= */}
       <div className="portfolio-scroll-area">
         <div className="portfolio-stack" ref={trackRef}>
           {projects.map((project, i) => (
-            <article
+            <a
               key={i}
+              href={project.link}
               className="portfolio-card"
               style={{
                 "--card-bg": project.bg,
               }}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} project`}
             >
               {/* ========================= */}
               {/* Top */}
@@ -187,15 +189,9 @@ export default function Portfolio() {
               {/* Project Image */}
               {/* ========================= */}
 
-              <a
-                href={project.link}
-                className="portfolio-image"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${project.title}`}
-              >
+              <div className="portfolio-image">
                 <img src={project.img} alt={project.title} />
-              </a>
+              </div>
 
               {/* ========================= */}
               {/* Bottom */}
@@ -204,12 +200,7 @@ export default function Portfolio() {
               <div className="portfolio-bottom">
                 <h3>{project.title}</h3>
 
-                <a
-                  href={project.link}
-                  className="view-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <span className="view-btn">
                   <span>View Project</span>
 
                   <ArrowUpRight
@@ -218,9 +209,9 @@ export default function Portfolio() {
                     strokeWidth={1.8}
                     aria-hidden="true"
                   />
-                </a>
+                </span>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>
